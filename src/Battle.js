@@ -38,15 +38,6 @@ class Header extends React.Component{
         {list}
     </div>
     )
-
-
-
-
-
-
-
-
-    
 }
 }
 class App extends React.Component{
