@@ -17,7 +17,7 @@ class Header extends React.Component{
         const {newcolor}=this.state;
     return(<div style={{maxWidth:'1200px',margin:'0'}}>
         <ul style={{display:'flex',flexDirection:'row'}}>
-            <li style={{padding:'1%',margin:'1%',listStyle:'none',color:newcolor}}><a href="#"  onClick={this.clickColor}>Popular</a></li>
+            <li style={{padding:'1%',margin:'1%',listStyle:'none',color:newcolor}}><a href=""  onClick={this.clickColor}>Popular</a></li>
             <li style={{padding:'1%',margin:'1%',listStyle:'none',color:newcolor}}> <a href="Battle.html"  onClick={this.clickColor}>Battle</a></li>
         </ul>
     </div>)
