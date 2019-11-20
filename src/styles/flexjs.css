@@ -1,0 +1,18 @@
+.div { display: flex;
+    flex-direction: row;
+     justify-Content: space-around;
+      flex-Wrap: wrap;
+       max-Width: 100%;
+        margin: 0 auto;
+         font-Size: 18px;
+          font-Weight: bold }
+ li a:hover{
+color:red;
+}
+li a{
+    text-decoration: none;
+}
+ .juzhon{
+    max-width: 1200px;
+     margin: 0 auto;
+}

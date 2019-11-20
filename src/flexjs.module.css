@@ -1,0 +1,8 @@
+.div { display: flex;
+     flex-direction: row;
+      justify-Content: space-around;
+       flex-Wrap: wrap;
+        max-Width: 100%;
+         margin: 0 auto;
+          font-Size: 18px;
+           font-Weight: bold }

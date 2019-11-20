@@ -3,6 +3,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import 'lodash';
+import styles from './flexjs.module.css';
+import './styles/flexjs.css'
+class Header extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={newcolor:''}
+    }
+    clickColor=()=>{
+        this.setState({newcolor:'red'})
+    }
+    render(){
+        const {newcolor}=this.state;
+    return(<div style={{maxWidth:'1200px',margin:'0'}}>
+        <ul style={{display:'flex',flexDirection:'row'}}>
+            <li style={{padding:'1%',margin:'1%',listStyle:'none',color:newcolor}}><a href="#"  onClick={this.clickColor}>Popular</a></li>
+            <li style={{padding:'1%',margin:'1%',listStyle:'none',color:newcolor}}> <a href="./Battle.html"  onClick={this.clickColor}>Battle</a></li>
+        </ul>
+    </div>)
+}
+}
+
 class Nac extends React.Component{
     constructor(props){
         super(props);
@@ -17,15 +38,17 @@ class Nac extends React.Component{
         const Ruby = "https://api.github.com/search/repositories?q=stars:%3E1+language:ruby&sort=stars&order=desc&type=Repositories";
         const Java = "https://api.github.com/search/repositories?q=stars:%3E1+language:java&sort=stars&order=desc&type=Repositories";
         const CSS = "https://api.github.com/search/repositories?q=stars:%3E1+language:css&sort=stars&order=desc&type=Repositories"; 
-        return( <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', maxWidth: '100%', margin: '0 auto', padding: '10px', fontSize: '18px', fontWeight: 'bold'}}>
+        return( 
+                
+        <div style={ {display: 'flex', flexDirection: 'row',justifyContent: 'space-around', maxWidth: '100%', margin: '0 auto', padding: '1%', fontSize: '18px', fontWeight: 'bold'}}>
             <ul style={{display: 'flex', flexDirection: 'row', listStyle: 'none', padding: '0px'}}>
-            <li style={{padding:'10px',margin:'10px',listStyle:'none'}}><a href="#" onClick={this.clickHanppen.bind(this,All)}>ALL</a></li>
-            <li style={{padding:'10px',margin:'10px',listStyle:'none'}}><a href="#" onClick={this.clickHanppen.bind(this,Javascript)}>Javascripts</a></li>
-            <li style={{padding:'10px',margin:'10px',listStyle:'none'}}><a  style={{hover:'#f5222d'}} href="#" onClick={this.clickHanppen.bind(this,Ruby)}>Ruby</a></li>
-            <li style={{padding:'10px',margin:'10px',listStyle:'none'}}><a href="#" onClick={this.clickHanppen.bind(this,Java)}>java</a></li>
-            <li style={{padding:'10px',margin:'10px',listStyle:'none'}}><a href="#" onClick={this.clickHanppen.bind(this,CSS)}>CSS</a></li>
-        
-            </ul></div>
+            <li style={{padding:'1%',margin:'1%',listStyle:'none'}}><a href="#" onClick={this.clickHanppen.bind(this,All)}>ALL</a></li>
+            <li style={{padding:'1%',margin:'1%',listStyle:'none'}}><a href="#" onClick={this.clickHanppen.bind(this,Javascript)}>Javascripts</a></li>
+            <li style={{padding:'1%',margin:'1%',listStyle:'none'}}><a  href="#" onClick={this.clickHanppen.bind(this,Ruby)}>Ruby</a></li>
+            <li style={{padding:'1%',margin:'1%',listStyle:'none'}}><a href="#" onClick={this.clickHanppen.bind(this,Java)}>java</a></li>
+            <li style={{padding:'1%',margin:'1%',listStyle:'none'}}><a href="#" onClick={this.clickHanppen.bind(this,CSS)}>CSS</a></li>
+            </ul>
+            </div>
             )
     }  
 }
@@ -54,7 +77,6 @@ class Content extends React.Component {
        
     render() {
         const style = {
-            div: { display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap', maxWidth: '100%', margin: '0 auto', fontSize: '18px', fontWeight: 'bold' },
             ul: { listStyle: 'none', padding: '0 0 10px 0', width: '250px', margin: '10px', textAlign: 'center', background: 'rgba(0, 0, 0, 0.08)' },
             h4: { margin: '15px', fontSize: '30px', fontWeight: '300' },
             img: { width: '150px', height: '150px', margin: '0 0 10px 0' },
@@ -64,7 +86,7 @@ class Content extends React.Component {
             a1: { textDecoration: 'none', color: 'rgb(187, 46, 31)', fontSize: '25px' },
             a2: { textDecoration: 'none', color: 'inherit', verticalAlign: 'middle' },
         }
-        const list = this.state.qingdan.map((item, key) => <ul style={{ textAlign: 'center', width: '22%',backgroundColor:'#d9d9d9',marginRight:'3px',marginBottom:'10px' }} key={item.id}>
+        const list = this.state.qingdan.map((item, key) => <ul style={{ textAlign: 'center', width: '22%',backgroundColor:'#d9d9d9',marginRight:'3px',marginBottom:'10px',paddingLeft: '0px'}} key={item.id}>
             <h4 style={{ textAlign: 'center' }}>#{key+1}</h4>
             <img src={item.owner.avatar_url} style={{ textAlign: 'center',width:'70%' }}/>
             <h2 style={{textAlign: 'center' }}>{item.name.substr(0, 9)}</h2>
@@ -76,12 +98,12 @@ class Content extends React.Component {
     </ul>);
     if (this.props.monitor === true) {
         return(
-            <div style={style.div}>
+            <div className={styles.div}>
               Fetch Repos.
         </div>
         )}
         else{
-        return <div style={style.div}>
+        return <div className='div'>
             {list}
         </div>
     }
@@ -92,12 +114,16 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state={resp:'https://api.github.com/search/repositories?q=stars:%3E1&sort=stars&order=desc&type=Repositories'};
+    
     }
     clickThing=(API) =>{
        this.setState({resp:API})
     }
+    
+    
     render() {
-        return <div>
+        return <div className='juzhon'>
+            <Header />
             <Nac clickThing={this.clickThing.bind(this)} />
             <Content API={this.state.resp} monitor={true} />
         </div>
