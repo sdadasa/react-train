@@ -13,7 +13,7 @@ class Header extends React.Component{
     render(){
         const list=<div>
         <ul style={{display:'flex',flexWrap:'wrap'}}>
-            <li style={{textDecoration:'none',padding:'10px',margin:'10px',listStyle:'none',}}><a href="./flex.html"  onClick={this.clickColor}>Popular</a></li>
+            <li style={{textDecoration:'none',padding:'10px',margin:'10px',listStyle:'none',}}><a href={"./flex.html"}  onClick={this.clickColor}>Popular</a></li>
             <li style={{textDecoration:'none',padding:'10px',margin:'10px',listStyle:'none',}}> <a href="#"  onClick={this.clickColor}>Battle</a></li>
         </ul>
         <h1 style={{textAlign:'center'}}>Instructions</h1>
