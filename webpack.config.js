@@ -1,13 +1,29 @@
 const path = require('path');
-module.exports = {
+const HtmlWebpackPlugin=require("html-webpack-plugin");
+module.exports = function(env , argv){
+    const isEnvDevelopment = argv.mode === 'development' || !argv.mode;
+    const isEnvProduction = argv.mode === 'production' ;
+    return {
+    mode:isEnvProduction?'production':isEnvDevelopment && 'development',
+    devtool:isEnvProduction?'source-map':isEnvDevelopment && 'cheap-module-source-map',
     entry: {
-        flexjs:'./src/flexjs.js',
-        Battle:'./src/Battle.js'
+        index:'./src/index.js',
+        
+       
     },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
+   devServer:{
+       contentBase:'./dist',
+   },
+   plugins:[
+    new HtmlWebpackPlugin({
+        filename:'index.html',
+        template:"public/index.html"
+    })
+],
     module: {
         rules: [{ test: /\.js$/, use: 'babel-loader' },
         {test:/\.css$/,
@@ -25,6 +41,8 @@ module.exports = {
             options: {
             limit: 10000
            } }
-    ]
+    ],
+   
     }
 };
+}
